@@ -1,0 +1,15 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: adaptive-ai-tutor-db
+    environment:
+      POSTGRES_DB: adaptive_tutor
+      POSTGRES_USER: tutor_user
+      POSTGRES_PASSWORD: tutor_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
