@@ -31,6 +31,20 @@ class DocumentChunk(Base):
         nullable=True,
     )
 
+    slide_number: Mapped[int | None] = mapped_column(
+    Integer,
+    nullable=True,
+    )
+
+    start_time: Mapped[float | None] = mapped_column(
+        nullable=True,
+    )
+
+    end_time: Mapped[float | None] = mapped_column(
+        nullable=True,
+    )
+    
+
     created_at: Mapped[datetime] = mapped_column(
         default=datetime.utcnow,
     )
