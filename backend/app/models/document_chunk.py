@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from pgvector.sqlalchemy import Vector
 from sqlalchemy import ForeignKey, Integer, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -21,6 +22,11 @@ class DocumentChunk(Base):
         nullable=False,
     )
 
+    embedding: Mapped[list[float] | None] = mapped_column(
+        Vector(384),
+        nullable=True,
+    )
+
     chunk_index: Mapped[int] = mapped_column(
         Integer,
         nullable=False,
@@ -32,8 +38,8 @@ class DocumentChunk(Base):
     )
 
     slide_number: Mapped[int | None] = mapped_column(
-    Integer,
-    nullable=True,
+        Integer,
+        nullable=True,
     )
 
     start_time: Mapped[float | None] = mapped_column(
@@ -43,7 +49,6 @@ class DocumentChunk(Base):
     end_time: Mapped[float | None] = mapped_column(
         nullable=True,
     )
-    
 
     created_at: Mapped[datetime] = mapped_column(
         default=datetime.utcnow,

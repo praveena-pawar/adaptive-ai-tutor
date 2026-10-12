@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from backend.app.models.document_chunk import DocumentChunk
+from backend.app.services.embedding_service import generate_embedding
 
 
 def create_document_chunks(
@@ -11,9 +12,12 @@ def create_document_chunks(
     document_chunks = []
 
     for chunk in chunks:
+        embedding = generate_embedding(chunk["content"])
+
         document_chunk = DocumentChunk(
             document_id=document_id,
             content=chunk["content"],
+            embedding=embedding,
             chunk_index=chunk["chunk_index"],
             page_number=chunk["page_number"],
         )
