@@ -57,5 +57,5 @@ def search_documents(
     except SQLAlchemyError as exc:
         raise HTTPException(
             status_code=500,
-            detail="Failed to  search educational materials.",
+            detail="Failed to search educational materials.",
         ) from exc
