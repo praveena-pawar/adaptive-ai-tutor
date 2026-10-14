@@ -33,6 +33,7 @@ def search_documents(
     db: Session = Depends(get_db),
 ):
     query = request.query.strip()
+    
 
     if not query:
         raise HTTPException(
